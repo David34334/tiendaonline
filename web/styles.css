@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+.img-banner {
+    background: url(img/banner-nav.jpg) center center/cover;
+    width: 100%;
+    height: 350px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+}
