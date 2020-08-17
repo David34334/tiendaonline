@@ -28,7 +28,7 @@ and open the template in the editor.
                         <a class="nav-link" href="#">Compras</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">IniciarSesión</a>
+                        <a class="nav-link" href="">IniciarSesión</a>
                     </li>
                 </ul>
             </div>
@@ -36,19 +36,21 @@ and open the template in the editor.
 
         <!--IMG Banner-->
         <div class="img-banner">
-            <h2>Tienda Online!</h2>
+
         </div>
-        
+
         <!--Productos-->
-        <div class="container">
-            <div class="card" style="width: 18rem;">
-                <img src="img/producto1.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Nombre Producto</h5>
-                    <p class="card-text">Descripcion Producto.</p>
-                    <a href="#" class="btn btn-dark">Comprar</a>
+        <form action="ProductoCtrl" method="GET">
+            <div class="container">
+                <div class="card" style="width: 18rem;">
+                    <img src="img/producto1.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Nombre Producto</h5>
+                        <p class="card-text">Descripcion Producto.</p>
+                        <input type="submit" class="btn btn-dark" name="accion" value="Comprar" />
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </body>
 </html>
