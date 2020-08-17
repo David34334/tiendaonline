@@ -1,9 +1,11 @@
+<%-- 
+    Document   : index
+    Created on : 16/08/2020, 11:14:50 PM
+    Author     : Hardwell
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Tienda Online</title>
