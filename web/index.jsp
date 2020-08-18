@@ -4,6 +4,8 @@
     Author     : Hardwell
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="model.Producto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,21 +40,14 @@
 
         <!--IMG Banner-->
         <div class="img-banner">
-
+            <h2>sdsdsd</h2>
         </div>
-
-        <!--Productos-->
+        
+        <!--BTN COMPRAR-->
         <form action="ProductoCtrl" method="GET">
-            <div class="container">
-                <div class="card" style="width: 18rem;">
-                    <img src="img/producto1.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Producto</h5>
-                        <p class="card-text">Descripcion Producto.</p>
-                        <input type="submit" class="btn btn-dark" name="accion" value="Comprar" />
-                    </div>
-                </div>
-            </div>
+            <input type="submit" class="btn btn-dark" name="accion" value="Comprar" />
+            <input type="submit" class="btn btn-warning" name="accion" value="VerCatalogo" />
         </form>
+        
     </body>
 </html>
