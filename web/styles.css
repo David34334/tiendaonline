@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    background: black;
 }
 
 
@@ -15,8 +16,4 @@
     align-items: center;
     justify-content: flex-end;
     margin-bottom: 5px;
-}
-
-.cards-products {
-    color: white;
 }

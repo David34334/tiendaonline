@@ -1,6 +1,7 @@
 <%@page import="java.util.List"%>
 <%@page import="model.Producto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,13 +13,16 @@
         <title>Tienda Online!</title>
     </head>
     <body>
-        <!--Productos-->
-        <form action="ProductoCtrl" method="GET">
-            <div class="container">
-                <div class="row">
+        <jsp:include page="../includes/header.jsp"></jsp:include>
+            <!--Productos-->
+            <h2 class="text-center text-dark">Nuestros Productos!</h2>
+            <form action="ProductoCtrl" method="GET">
+                <div class="container">
+                    <div class="row">
                     <%for (Producto producto : productos) {%>
-                    <div class="card mx-2 mb-4" style="width: 14rem;">
+                    <div class="card mx-2 mb-4" style="width: 13rem;">
                         <img class="card-img-top" alt="..." src=<%=producto.getUrlPhotoProducto()%>>
+                        <hr/>
                         <div class="card-body">
                             <h5 class="card-title"><%=producto.getNombreProducto()%></h5>
                             <p class="card-text"><%=producto.getDescripProducto()%></p>
@@ -30,5 +34,6 @@
                 </div>
             </div>
         </form>
+        <jsp:include page="../includes/footer.jsp"></jsp:include>
     </body>
 </html>
