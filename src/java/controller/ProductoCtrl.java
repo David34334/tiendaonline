@@ -52,11 +52,11 @@ public class ProductoCtrl extends HttpServlet {
     public List<Producto> cargarProductos() {
         List<Producto> listaProductos = new ArrayList();
 
-        Producto p1 = new Producto("Portatil Lenovo", "16GB RAM, 1TB", 1750000, "img/lenovo.png");
-        Producto p2 = new Producto("Portatil Asus", "32GB RAM, 2TB", 3750000, "img/asus.jpg");
-        Producto p3 = new Producto("Portatil HP", "8GB RAM, 1TB", 1250000, "img/hp.jpg");
-        Producto p4 = new Producto("Portatil Dell", "4GB RAM, 4TB", 1350000, "img/dell.jpg");
-        Producto p5 = new Producto("PC", "4GB RAM, 4TB", 4350000, "img/pc.jpg");
+        Producto p1 = new Producto(0, "Poratil Lenovo", 1750000, "img/lenovo.png", "16GB RAM, 1TB");
+        Producto p2 = new Producto(0, "Poratil Asus", 3750000, "img/asus.jpg", "16GB RAM, 1TB");
+        Producto p3 = new Producto(0, "Poratil Dell", 1250000, "img/dell.jpg", "8GB RAM, 1TB");
+        Producto p4 = new Producto(0, "Poratil HP", 1399000, "img/hp.jpg", "16GB RAM, 1TB");
+        Producto p5 = new Producto(0, "PC - Escritorio", 2750000, "img/pc.jpg", "16GB RAM, 1TB");
         listaProductos.add(p1);
         listaProductos.add(p2);
         listaProductos.add(p3);

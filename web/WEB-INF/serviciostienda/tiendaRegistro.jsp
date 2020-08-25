@@ -17,10 +17,13 @@
         <jsp:include page="../includes/header.jsp"></jsp:include>
         <div class="container">
             <form action="ProductoCtrl" method="POST">
-                <h2 class="text-center">Registrate!</h2>
-                <input class="form-control mb-2" type="text" placeholder="Ingresa tu nombre de usuario..." />
-                <input class="form-control mb-2" type="text" placeholder="Ingresa tu correo..." />
-                <input class="form-control mb-2" type="text" placeholder="Ingresa tu contraseña..." />
+                <h2 class="text-center">Regístrate!</h2>
+                <input class="form-control mb-2" type="text" name="nombre" placeholder="Ingresa tu nombre..." required=""/>
+                <input class="form-control mb-2" type="text" name="apellido" placeholder="Ingresa tu apellido..." required=""/>
+                <input class="form-control mb-2" type="email" name="correo" placeholder="Ingresa tu correo..." required=""/>
+                <input class="form-control mb-2" type="password" name="clave" placeholder="Ingresa tu contraseña..." required=""/>
+                <input class="form-control mb-2" type="text" name="cedula" placeholder="Ingresa tu cédula..." required=""/>
+                <input class="form-control mb-2" type="text" name="direccion" placeholder="Ingresa tu dirección..." required=""/>
                 <input type="submit" class="btn btn-dark btn-block mb-2" name="accion" value="SignIn">
                 <input type="submit" class="btn btn-warning btn-sm btn-block mb-2" name="accion" value="LogIn">
             </form>

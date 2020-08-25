@@ -2,53 +2,67 @@ package model;
 
 public class Producto {
     
-    private String nombreProducto;
-    private String descripProducto;
-    private double precioProducto;
-    private String urlPhotoProducto;
-    
+    private int id_carrito;
+    private String nombre;
+    private double precio;
+    private String imagen;
+    private String descripcion;
     
     public Producto() {
         
     }
 
-    public Producto(String nombreProducto, String descripProducto, double precioProducto, String urlPhotoProducto) {
-        this.nombreProducto = nombreProducto;
-        this.descripProducto = descripProducto;
-        this.precioProducto = precioProducto;
-        this.urlPhotoProducto = urlPhotoProducto;
+    public Producto(int id_carrito, String nombre, double precio, String imagen, String descripcion) {
+        this.id_carrito = id_carrito;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.descripcion = descripcion;
     }
 
-    public String getNombreProducto() {
-        return nombreProducto;
+    @Override
+    public String toString() {
+        return "Producto{" + "id_carrito=" + id_carrito + ", nombre=" + nombre + ", precio=" + precio + ", imagen=" + imagen + ", descripcion=" + descripcion + '}';
     }
 
-    public void setNombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
+    public int getId_carrito() {
+        return id_carrito;
     }
 
-    public String getDescripProducto() {
-        return descripProducto;
+    public void setId_carrito(int id_carrito) {
+        this.id_carrito = id_carrito;
     }
 
-    public void setDescripProducto(String descripProducto) {
-        this.descripProducto = descripProducto;
+    public String getNombre() {
+        return nombre;
     }
 
-    public double getPrecioProducto() {
-        return precioProducto;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setPrecioProducto(double precioProducto) {
-        this.precioProducto = precioProducto;
+    public double getPrecio() {
+        return precio;
     }
 
-    public String getUrlPhotoProducto() {
-        return urlPhotoProducto;
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
-    public void setUrlPhotoProducto(String urlPhotoProducto) {
-        this.urlPhotoProducto = urlPhotoProducto;
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
 }

@@ -21,12 +21,12 @@
                     <div class="row">
                     <%for (Producto producto : productos) {%>
                     <div class="card mx-2 mb-4" style="width: 13rem;">
-                        <img class="card-img-top" alt="..." src=<%=producto.getUrlPhotoProducto()%>>
+                        <img class="card-img-top" alt="..." src=<%=producto.getImagen()%>>
                         <hr/>
                         <div class="card-body">
-                            <h5 class="card-title"><%=producto.getNombreProducto()%></h5>
-                            <p class="card-text"><%=producto.getDescripProducto()%></p>
-                            <p class="card-text">$<%=producto.getPrecioProducto()%> COP</p>
+                            <h5 class="card-title"><%=producto.getNombre()%></h5>
+                            <p class="card-text"><%=producto.getDescripcion()%></p>
+                            <p class="card-text">$<%=producto.getPrecio()%> COP</p>
                             <input type="submit" class="btn btn-dark" name="accion" value="Comprar" />
                         </div>
                     </div>
