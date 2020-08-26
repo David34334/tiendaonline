@@ -16,7 +16,11 @@ public class UsuarioCtrl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        if (request.getParameter("accion") != null) {
+            
+        } else {
+            //Inicializar todos los usuarios y productos
+        }
     }
 
     @Override
