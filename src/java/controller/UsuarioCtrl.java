@@ -1,5 +1,6 @@
 package controller;
 
+import controllerDAD.UsuarioJDBC;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,6 +40,8 @@ public class UsuarioCtrl extends HttpServlet {
         user.setClave(request.getParameter("clave"));
         user.setIdentificacion(request.getParameter("cedula"));
         user.setDireccion(request.getParameter("direccion"));
+        user.setId_rol(1);
+        String mensaje = UsuarioJDBC.instancia().insertarUsuario(user);
     }
     
     public void iniciarSesion() {

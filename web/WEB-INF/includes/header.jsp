@@ -15,6 +15,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="">IniciarSesión</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">Registrarse</a>
+            </li>
         </ul>
     </div>
 </nav>

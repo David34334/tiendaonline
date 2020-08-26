@@ -16,7 +16,7 @@
     <body>
         <jsp:include page="../includes/header.jsp"></jsp:include>
         <div class="container">
-            <form action="ProductoCtrl" method="POST">
+            <form action="UsuarioCtrl" method="POST">
                 <h2 class="text-center">Regístrate!</h2>
                 <input class="form-control mb-2" type="text" name="nombre" placeholder="Ingresa tu nombre..." required=""/>
                 <input class="form-control mb-2" type="text" name="apellido" placeholder="Ingresa tu apellido..." required=""/>

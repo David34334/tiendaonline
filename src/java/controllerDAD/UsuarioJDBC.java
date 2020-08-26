@@ -34,13 +34,13 @@ public class UsuarioJDBC {
             conn = Conexion.getConnection() ;
             stm = conn.prepareStatement(SQL_INSERT);
             int index =1;
-            stm.setInt(index++,usuario.getId_rol());
             stm.setString(index++, usuario.getNombre());
             stm.setString(index++, usuario.getApellido());
             stm.setString(index++, usuario.getCorreo());
             stm.setString(index++, usuario.getIdentificacion());
             stm.setString(index++, usuario.getDireccion());
             stm.setString(index++, usuario.getClave());
+            stm.setInt(index++,usuario.getId_rol());
             row = stm.executeUpdate();
             mensaje = "Se inserto " + row +" registro, satisfactoriamente.";
         }catch(SQLException e){
