@@ -28,9 +28,6 @@ public class Usuario {
         this.direccion = direccion;
         this.identificacion = identificacion;
     }
-
-    
-    
     
 
     public String getNombre() {

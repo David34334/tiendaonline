@@ -24,7 +24,7 @@
                 <input class="form-control mb-2" type="password" name="clave" placeholder="Ingresa tu contraseña..." required=""/>
                 <input class="form-control mb-2" type="text" name="cedula" placeholder="Ingresa tu cédula..." required=""/>
                 <input class="form-control mb-2" type="text" name="direccion" placeholder="Ingresa tu dirección..." required=""/>
-                <input type="submit" class="btn btn-dark btn-block mb-2" name="accion" value="SignIn">
+                <input type="submit" class="btn btn-dark btn-block mb-2" name="accion" value="Registrar">
                 <input type="submit" class="btn btn-warning btn-sm btn-block mb-2" name="accion" value="LogIn">
             </form>
         </div>
