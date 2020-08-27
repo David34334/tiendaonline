@@ -12,11 +12,11 @@ import java.sql.SQLException;
  * @author Equipo440IS
  */
 public class Conexion {
-    private static String JDBC_DRIVER = "com.mysql.jdbc.Driver"; //"org.postgresql.Driver";  //"com.mysql.jdbc.Driver";
-    private static String DB = "tienda";
-    private static String JDBC_URL = "jdbc:mysql://localhost:3306/"+DB ;//"jdbc:postgresql://localhost:5432/"+ DB;  //"jdbc:mysql://localhost:3306/+DB;
-    private static String JDBC_USER = "root";  //"root";
-    private static String JDBC_PASS = ""; 
+    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver"; //"org.postgresql.Driver";  //"com.mysql.jdbc.Driver";
+    private static final String DB = "tienda";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/"+DB ;//"jdbc:postgresql://localhost:5432/"+ DB;  //"jdbc:mysql://localhost:3306/+DB;
+    private static final String JDBC_USER = "root";  //"root";
+    private static final String JDBC_PASS = ""; 
     private static Driver driver;
     
     public static synchronized Connection getConnection() throws SQLException{

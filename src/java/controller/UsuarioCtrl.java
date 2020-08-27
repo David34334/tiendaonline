@@ -18,7 +18,12 @@ public class UsuarioCtrl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if (request.getParameter("accion") != null) {
-            
+            if (request.getParameter("accion").equals("Registarse")) {
+                request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaRegistro.jsp").forward(request, response);
+            }
+            if (request.getParameter("accion").equals("Iniciar Sesion")) {
+                request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaLogin.jsp").forward(request, response);
+            }
         } else {
             //Inicializar todos los usuarios y productos
         }
@@ -28,11 +33,11 @@ public class UsuarioCtrl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if (request.getParameter("accion").equals("Registrar")) {
-            registrar(request);
+            registrar(request, response);
         }
     }
     
-    public void registrar(HttpServletRequest request) {
+    public void registrar(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Usuario user = new Usuario();
         user.setNombre(request.getParameter("nombre"));
         user.setApellido(request.getParameter("apellido"));

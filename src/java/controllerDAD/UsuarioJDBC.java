@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import model.Usuario;
 import services.Conexion;
 
@@ -37,9 +35,9 @@ public class UsuarioJDBC {
             stm.setString(index++, usuario.getNombre());
             stm.setString(index++, usuario.getApellido());
             stm.setString(index++, usuario.getCorreo());
-            stm.setString(index++, usuario.getIdentificacion());
-            stm.setString(index++, usuario.getDireccion());
             stm.setString(index++, usuario.getClave());
+            stm.setString(index++, usuario.getDireccion());
+            stm.setString(index++, usuario.getIdentificacion());
             stm.setInt(index++,usuario.getId_rol());
             row = stm.executeUpdate();
             mensaje = "Se inserto " + row +" registro, satisfactoriamente.";

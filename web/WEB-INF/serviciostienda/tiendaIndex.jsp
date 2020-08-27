@@ -21,7 +21,7 @@
                     <div class="row">
                     <%for (Producto producto : productos) {%>
                     <div class="card mx-2 mb-4" style="width: 13rem;">
-                        <img class="card-img-top" alt="..." src=<%=producto.getImagen()%>>
+                        <img class="card-img-top" alt="..." src="img/<%=producto.getImagen()%>">
                         <hr/>
                         <div class="card-body">
                             <h5 class="card-title"><%=producto.getNombre()%></h5>
