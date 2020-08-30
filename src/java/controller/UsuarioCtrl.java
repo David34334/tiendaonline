@@ -23,6 +23,10 @@ public class UsuarioCtrl extends HttpServlet {
             if (request.getParameter("accion").equals("Iniciar Sesion")) {
                 request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaLogin.jsp").forward(request, response);
             }
+            if (request.getParameter("accion").equals("Cerrar Sesion")) {
+                request.getSession().invalidate();
+                response.sendRedirect("ProductoCtrl");
+            }
             if (request.getParameter("accion").equals("Editar Datos")) {
                 actualizarDatos(request, response);
             }
