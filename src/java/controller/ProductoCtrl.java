@@ -36,38 +36,16 @@ public class ProductoCtrl extends HttpServlet {
         } else {
             productos = ProductoJDBC.instancia().listarProductos();
             request.setAttribute("productos", productos);
-//            productos = cargarProductos();
-//            request.setAttribute("productos", productos);
+            request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaIndex.jsp").forward(request, response);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("accion").equals("LogIn")) {
-            request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaLogin.jsp").forward(request, response);
-        }
-        if (request.getParameter("accion").equals("SignIn")) {
-            request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaRegistro.jsp").forward(request, response);
-        }
+
     }
 
-//    public List<Producto> cargarProductos() {
-//        List<Producto> listaProductos = new ArrayList();
-//
-//        Producto p1 = new Producto(0, "Poratil Lenovo", 1750000, "img/lenovo.png", "16GB RAM, 1TB");
-//        Producto p2 = new Producto(0, "Poratil Asus", 3750000, "img/asus.jpg", "16GB RAM, 1TB");
-//        Producto p3 = new Producto(0, "Poratil Dell", 1250000, "img/dell.jpg", "8GB RAM, 1TB");
-//        Producto p4 = new Producto(0, "Poratil HP", 1399000, "img/hp.jpg", "16GB RAM, 1TB");
-//        Producto p5 = new Producto(0, "PC - Escritorio", 2750000, "img/pc.jpg", "16GB RAM, 1TB");
-//        listaProductos.add(p1);
-//        listaProductos.add(p2);
-//        listaProductos.add(p3);
-//        listaProductos.add(p4);
-//        listaProductos.add(p5);
-//
-//        return listaProductos;
-//    }
 
     @Override
     public String getServletInfo() {
