@@ -24,8 +24,7 @@ public class UsuarioCtrl extends HttpServlet {
                 request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaLogin.jsp").forward(request, response);
             }
             if (request.getParameter("accion").equals("Cerrar Sesion")) {
-                request.getSession().invalidate();
-                response.sendRedirect("ProductoCtrl");
+                cerrarSesion(request, response);
             }
             if (request.getParameter("accion").equals("Editar Datos")) {
                 actualizarDatos(request, response);
@@ -75,14 +74,21 @@ public class UsuarioCtrl extends HttpServlet {
             HttpSession objsesion = request.getSession(true);
             objsesion.setAttribute("usuario", correo);
             objsesion.setAttribute("id", UsuarioJDBC.instancia().autenticacion(correo, clave));
+            Usuario user = null;
+            user = UsuarioJDBC.instancia().consultarUsuario(UsuarioJDBC.instancia().autenticacion(correo, clave));
+            if(user.getId_rol() == 0) {
+                int rol = user.getId_rol();
+                objsesion.setAttribute("rol", rol);
+            }
             response.sendRedirect("ProductoCtrl");
         } else {
             request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaLogin.jsp").forward(request, response);
         }
     }
 
-    public void cerrarSesion() {
-
+    public void cerrarSesion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.getSession().invalidate();
+        response.sendRedirect("ProductoCtrl");
     }
 
     public void actualizarDatos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
