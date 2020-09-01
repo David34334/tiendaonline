@@ -10,6 +10,8 @@ package model;
  * @author b_urb
  */
 public class Usuario {
+
+    private int id;
     private String nombre;
     private String apellido;
     private String correo;
@@ -29,7 +31,14 @@ public class Usuario {
         this.direccion = direccion;
         this.identificacion = identificacion;
     }
+    
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public int getId_rol() {
         return id_rol;
     }

@@ -44,7 +44,19 @@ public class UsuarioCtrl extends HttpServlet {
         String mensaje = UsuarioJDBC.instancia().insertarUsuario(user);
     }
     
-    public void iniciarSesion() {
+    public void iniciarSesion(HttpServletRequest request) {
+        String correo = request.getParameter("correo");
+        String clave = request.getParameter("clave");
+        Usuario user = UsuarioJDBC.instancia().listarUsuario(correo,clave);
+//        user.setNombre(request.getParameter("nombre"));
+//        user.setApellido(request.getParameter("apellido"));
+//        user.setCorreo(request.getParameter("correo"));
+//        user.setClave(request.getParameter("clave"));
+//        user.setIdentificacion(request.getParameter("cedula"));
+//        user.setDireccion(request.getParameter("direccion"));
+//        user.setId_rol(1);
+        String mensaje = UsuarioJDBC.instancia().insertarUsuario(user);
+        
         
     }
     
