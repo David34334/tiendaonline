@@ -3,21 +3,18 @@ package model;
 public class Producto {
     
     private int id;
-    private int id_carrito;
     private String nombre;
     private double precio;
     private String imagen;
     private String descripcion;
     private int id_categoria;
-    private int cantidad;
     
     public Producto() {
         
     }
 
-    public Producto(int id, int id_carrito, String nombre, double precio, String imagen, String descripcion) {
+    public Producto(int id, String nombre, double precio, String imagen, String descripcion) {
         this.id = id;
-        this.id_carrito = id_carrito;
         this.nombre = nombre;
         this.precio = precio;
         this.imagen = imagen;
@@ -26,7 +23,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "id=" + id + ", id_carrito=" + id_carrito + ", nombre=" + nombre + ", precio=" + precio + ", imagen=" + imagen + ", descripcion=" + descripcion + '}';
+        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", imagen=" + imagen + ", descripcion=" + descripcion + '}';
     }
 
     public int getId() {
@@ -37,13 +34,7 @@ public class Producto {
         this.id = id;
     }
 
-    public int getId_carrito() {
-        return id_carrito;
-    }
 
-    public void setId_carrito(int id_carrito) {
-        this.id_carrito = id_carrito;
-    }
 
     public String getNombre() {
         return nombre;
@@ -85,12 +76,5 @@ public class Producto {
         this.id_categoria = id_categoria;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-    
 }

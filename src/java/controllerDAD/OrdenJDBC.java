@@ -9,29 +9,29 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import model.Carro;
+import model.Orden;
 import services.Conexion;
 
 /**
  *
  * @author b_urb
  */
-public class CarroJDBC {
-        private static CarroJDBC carroJDBC;
+public class OrdenJDBC {
+        private static OrdenJDBC ordenJDBC;
     
-    private CarroJDBC(){
+    private OrdenJDBC(){
         
     }
     
-    public static CarroJDBC instancia(){
-        if(carroJDBC == null){
-            carroJDBC = new CarroJDBC();
+    public static OrdenJDBC instancia(){
+        if(ordenJDBC == null){
+            ordenJDBC = new OrdenJDBC();
         }
-        return carroJDBC;
+        return ordenJDBC;
     }
     
-    private final String SQL_INSERT ="INSERT INTO carrito(precio,id_usuario,estado,referencia) values(?,?,?,?)";
-    public String insertarCarro(Carro carro){
+    private final String SQL_INSERT ="INSERT INTO orden(id_carro,id_producto,cantidad) values(?,?,?)";
+    public String insertarOrden(Orden orden){
         Connection conn=null;
         PreparedStatement stm=null;
         String mensaje="";
@@ -41,10 +41,9 @@ public class CarroJDBC {
             conn = Conexion.getConnection() ;
             stm = conn.prepareStatement(SQL_INSERT);
             int index =1;
-            stm.setDouble(index++, carro.getPrecio());
-            stm.setInt(index++, carro.getId_usuario());
-            stm.setString(index++, carro.getEstado());
-            stm.setInt(index++, carro.getReferencia());
+            stm.setInt(index++, orden.getId_carro());
+            stm.setInt(index++, orden.getId_producto());
+            stm.setInt(index++, orden.getCantidad());
             row = stm.executeUpdate();
             mensaje = "Se inserto " + row +" registro, satisfactoriamente.";
         }catch(SQLException e){
@@ -57,25 +56,22 @@ public class CarroJDBC {
     }
     
     
-    private final String SQL_SELECT_CAT="SELECT * FROM carrito WHERE id=?";
-    public Carro consultarCarro(int id){
+    private final String SQL_SELECT_CAT="SELECT * FROM orden WHERE id_carro=?";
+    public Orden consultarOrden(int id){
         Connection conn=null;
         PreparedStatement stm=null;
         ResultSet rs=null;
-        Carro carro=null;
+        Orden orden=null;
         try{
             conn = Conexion.getConnection() ;
             stm = conn.prepareStatement(SQL_SELECT_CAT);
             stm.setInt(1,id);
             rs = stm.executeQuery();
             while(rs.next()){
-                carro = new Carro();
-                carro.setId(rs.getInt(1));
-                carro.setPrecio(rs.getDouble(2));
-                carro.setId_usuario(rs.getInt(3));
-                carro.setEstado(rs.getString(4));
-                carro.setReferencia(rs.getInt(5));
-            
+                orden = new Orden();
+                orden.setId_carro(rs.getInt(1));
+                orden.setId_producto(rs.getInt(2));
+                orden.setCantidad(rs.getInt(3));
             }
         }catch(SQLException e){
             
@@ -84,7 +80,12 @@ public class CarroJDBC {
             Conexion.closed(stm);
             Conexion.closed(rs);
         }
-        return carro;
+        return orden;
     }
+    
+
+
+    
+    
     
 }

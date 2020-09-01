@@ -14,6 +14,7 @@ public class Carro {
     private int id_usuario;
     private int id;
     private String estado;
+    private int referencia;
 
     public Carro() {
     }
@@ -55,6 +56,14 @@ public class Carro {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public int getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(int referencia) {
+        this.referencia = referencia;
     }
     
     
