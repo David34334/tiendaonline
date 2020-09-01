@@ -35,7 +35,7 @@ public class ProductoJDBC {
             conn = Conexion.getConnection() ;
             stm = conn.prepareStatement(SQL_INSERT);
             int index =1; 
-            stm.setInt(index++,producto.getId());
+            //stm.setInt(index++,producto.getId());
             stm.setString(index++, producto.getNombre());
             stm.setString(index++, producto.getDescripcion());
             row = stm.executeUpdate();
@@ -63,7 +63,7 @@ public class ProductoJDBC {
             rs = stm.executeQuery();
             while(rs.next()){
                 producto = new Producto();
-                producto.setId(rs.getInt(1));
+                //producto.setId(rs.getInt(1));
                 producto.setNombre(rs.getString(2));
                 producto.setDescripcion(rs.getString(3));
             }
@@ -90,7 +90,7 @@ public class ProductoJDBC {
             int index =1; 
             stm.setString(index++, producto.getNombre());
             stm.setString(index++, producto.getDescripcion());
-            stm.setInt(index++,producto.getId());
+            //stm.setInt(index++,producto.getId());
             row = stm.executeUpdate();
             mensaje = "Se actualizó " + row +" registro, satisfactoriamente.";
         }catch(SQLException e){
@@ -125,7 +125,7 @@ public class ProductoJDBC {
         return mensaje;
     }
     
-    private final String SQL_SELECT="SELECT id,nombre,descripcion FROM producto ORDER BY id";
+    private final String SQL_SELECT="SELECT * FROM producto ORDER BY id";
     public List<Producto> listarProductos(){
         Connection conn=null;
         PreparedStatement stm=null;
@@ -141,7 +141,10 @@ public class ProductoJDBC {
                 producto = new Producto();
                 producto.setId(rs.getInt(1));
                 producto.setNombre(rs.getString(2));
-                producto.setDescripcion(rs.getString(3));
+                producto.setPrecio(Double.parseDouble(rs.getString(3)));
+                producto.setImagen(rs.getString(4));
+                producto.setDescripcion(rs.getString(5));
+                producto.setId_carrito(Integer.parseInt(rs.getString(6)));
                 lista.add(producto);
             }
         }catch(SQLException e){

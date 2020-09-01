@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import model.Usuario;
 import services.Conexion;
 
@@ -37,9 +35,9 @@ public class UsuarioJDBC {
             stm.setString(index++, usuario.getNombre());
             stm.setString(index++, usuario.getApellido());
             stm.setString(index++, usuario.getCorreo());
-            stm.setString(index++, usuario.getIdentificacion());
-            stm.setString(index++, usuario.getDireccion());
             stm.setString(index++, usuario.getClave());
+            stm.setString(index++, usuario.getDireccion());
+            stm.setString(index++, usuario.getIdentificacion());
             stm.setInt(index++,usuario.getId_rol());
             row = stm.executeUpdate();
             mensaje = "Se inserto " + row +" registro, satisfactoriamente.";
@@ -53,8 +51,8 @@ public class UsuarioJDBC {
     }
     
     
-    private final String SQL_SELECT_CAT="SELECT nombre,apellido,direccion,identificacion FROM usuario WHERE id=?";
-    public Usuario consultarUsuario( int id){
+    private final String SQL_SELECT_CAT="SELECT nombre,apellido,direccion,identificacion,id_rol FROM usuario WHERE id=?";
+    public Usuario consultarUsuario(int id){
         Connection conn=null;
         PreparedStatement stm=null;
         ResultSet rs=null;
@@ -71,7 +69,7 @@ public class UsuarioJDBC {
                 usuario.setApellido(rs.getString(2));
                 usuario.setDireccion(rs.getString(3));
                 usuario.setIdentificacion(rs.getString(4));
-            
+                usuario.setId_rol(Integer.parseInt(rs.getString(5)));
             }
         }catch(SQLException e){
             
@@ -83,32 +81,61 @@ public class UsuarioJDBC {
         return usuario;
     }
     
-    private final String SQL_UPDATE ="UPDATE usuario SET nombre=?, apellido=?, direccion=?, clave=? WHERE id=?";
-    public String modificarUsuario(Usuario usuario){
+
+
+    private final String SQL_INICIAR_SESION = "SELECT * FROM usuario WHERE correo=? and clave=?";
+    public int autenticacion(String correo, String contrasena) {
         Connection conn=null;
         PreparedStatement stm=null;
-        String mensaje="";
-        int row=0;
-        try{
+        ResultSet rs=null;
+        int id = -1;
+        try {
+            conn = Conexion.getConnection();
+            stm = conn.prepareStatement(SQL_INICIAR_SESION);
+            stm.setString(1, correo);
+            stm.setString(2, contrasena);
+            rs = stm.executeQuery();
             
-            conn = Conexion.getConnection() ;
+            if(rs.absolute(1)) {
+                id = Integer.parseInt(rs.getString(1));
+                return id;
+            }
+            
+        } catch (Exception e) {
+        } finally {
+            Conexion.closed(conn);
+            Conexion.closed(stm);
+            Conexion.closed(rs);
+        }
+        return id;
+    }
+    
+    private final String SQL_UPDATE = "UPDATE usuario SET nombre=?, apellido=?, direccion=? WHERE id=?";
+    public String actualizarEmpleo(Usuario user) {
+        String mensaje = "";
+        Connection conn = null;
+        PreparedStatement stm = null;
+        int row = 0;
+        try {
+            conn = Conexion.getConnection();
             stm = conn.prepareStatement(SQL_UPDATE);
-            int index =1; 
-            stm.setString(index++, usuario.getNombre());
-            stm.setString(index++, usuario.getApellido());
-            stm.setString(index++, usuario.getDireccion());
-            stm.setString(index++, usuario.getClave());
-            stm.setInt(index++,usuario.getId());
+            int index = 1;
+            stm.setString(index++, user.getNombre());
+            stm.setString(index++, user.getApellido());
+            stm.setString(index++, user.getDireccion());
+            stm.setInt(index++, user.getId());
             row = stm.executeUpdate();
-            mensaje = "Se actualizó " + row +" registro, satisfactoriamente.";
-        }catch(SQLException e){
+            mensaje = "Se actualizo" + row + "registro(s) satisfactoriamente";
+        } catch (SQLException e) {
             mensaje = "Error: " + e.getMessage();
-        }finally{
+        } finally {
+
             Conexion.closed(conn);
             Conexion.closed(stm);
         }
         return mensaje;
     }
+
 //    
 //    private final String SQL_DELETE ="DELETE FROM producto WHERE id=?";
 //    public String borrarProducto(int idProducto){
@@ -161,5 +188,6 @@ public class UsuarioJDBC {
 //        }
 //        return lista;
 //    }
+
     
 }

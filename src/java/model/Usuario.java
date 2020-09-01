@@ -23,15 +23,17 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, String correo, String clave, String direccion, String identificacion) {
+    public Usuario(int id, String nombre, String apellido, String correo, String clave, String direccion, String identificacion, int id_rol) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.clave = clave;
         this.direccion = direccion;
         this.identificacion = identificacion;
+        this.id_rol = id_rol;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -39,6 +41,7 @@ public class Usuario {
     public void setId(int id) {
         this.id = id;
     }
+
     public int getId_rol() {
         return id_rol;
     }

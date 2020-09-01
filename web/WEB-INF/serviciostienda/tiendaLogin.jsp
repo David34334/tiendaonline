@@ -9,15 +9,17 @@
     </head>
     <body>
         <jsp:include page="../includes/header.jsp"></jsp:include>
-        <div class="container">
-            <form action="ProductoCtrl" method="POST">
-                <h2 class="text-center">Iniciar Sesión!</h2>
-                <input class="form-control mb-2" type="text" placeholder="Ingresa tu correo..." />
-                <input class="form-control mb-2" type="text" placeholder="Ingresa tu contraseña..." />
-                <input type="submit" class="btn btn-dark btn-block mb-2" name="accion" value="LogIn">
-                <input type="submit" class="btn btn-warning btn-sm btn-block mb-2" name="accion" value="SignIn">
-            </form>
-        </div>
+            <div class="container">
+                <form action="UsuarioCtrl" method="POST">
+                    <h2 class="text-center">Iniciar Sesión!</h2>
+                    <input class="form-control mb-2" name="correo" type="text" placeholder="Ingresa tu correo..." required=""/>
+                    <input class="form-control mb-2" name="clave" type="password" placeholder="Ingresa tu contraseña..." required=""/>
+                    <input type="submit" class="btn btn-dark btn-block mb-2" name="accion" value="Iniciar Sesion">
+                </form>
+                <form action="UsuarioCtrl" method="POST">
+                    <input type="submit" class="btn btn-warning btn-sm btn-block mb-2" name="accion" value="No tienes una cuenta?">
+                </form>
+            </div>
         <jsp:include page="../includes/footer.jsp"></jsp:include>
     </body>
 </html>
