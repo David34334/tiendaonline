@@ -24,7 +24,7 @@ public class ProductoJDBC {
         return productoJDBC;
     }
     
-    private final String SQL_INSERT ="INSERT INTO producto(id,nombre,descripcion) values(?,?,?)";
+    private final String SQL_INSERT ="INSERT INTO producto(nombre,precio,imagen,descripcion,id_categoria) values(?,?,?,?,?)";
     public String insertarProducto(Producto producto){
         Connection conn=null;
         PreparedStatement stm=null;
@@ -37,7 +37,10 @@ public class ProductoJDBC {
             int index =1; 
             //stm.setInt(index++,producto.getId());
             stm.setString(index++, producto.getNombre());
+            stm.setDouble(index++, producto.getPrecio());
+            stm.setString(index++, producto.getImagen());
             stm.setString(index++, producto.getDescripcion());
+            stm.setInt(index++, producto.getId_categoria());
             row = stm.executeUpdate();
             mensaje = "Se inserto " + row +" registro, satisfactoriamente.";
         }catch(SQLException e){
@@ -50,7 +53,7 @@ public class ProductoJDBC {
     }
     
     
-    private final String SQL_SELECT_CAT="SELECT id,nombre,descripcion FROM producto WHERE id=?";
+    private final String SQL_SELECT_CAT="SELECT * FROM producto WHERE id=?";
     public Producto consultarProducto( int id){
         Connection conn=null;
         PreparedStatement stm=null;
@@ -63,9 +66,12 @@ public class ProductoJDBC {
             rs = stm.executeQuery();
             while(rs.next()){
                 producto = new Producto();
-                //producto.setId(rs.getInt(1));
+                producto.setId(rs.getInt(1));
                 producto.setNombre(rs.getString(2));
-                producto.setDescripcion(rs.getString(3));
+                producto.setPrecio(rs.getDouble(3));
+                producto.setImagen(rs.getString(4));
+                producto.setDescripcion(rs.getString(5));
+                producto.setId_categoria(rs.getInt(6));
             }
         }catch(SQLException e){
             
@@ -144,7 +150,7 @@ public class ProductoJDBC {
                 producto.setPrecio(Double.parseDouble(rs.getString(3)));
                 producto.setImagen(rs.getString(4));
                 producto.setDescripcion(rs.getString(5));
-                producto.setId_carrito(Integer.parseInt(rs.getString(6)));
+                producto.setId_categoria(rs.getInt(6));
                 lista.add(producto);
             }
         }catch(SQLException e){

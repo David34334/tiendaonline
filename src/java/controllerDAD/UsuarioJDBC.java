@@ -136,30 +136,7 @@ public class UsuarioJDBC {
         return mensaje;
     }
 
-//    
-//    private final String SQL_DELETE ="DELETE FROM producto WHERE id=?";
-//    public String borrarProducto(int idProducto){
-//        Connection conn=null;
-//        PreparedStatement stm=null;
-//        String mensaje="";
-//        int row=0;
-//        try{
-//            
-//            conn = Conexion.getConnection() ;
-//            stm = conn.prepareStatement(SQL_DELETE);
-//            int index =1; 
-//            stm.setInt(index++,idProducto);
-//            row = stm.executeUpdate();
-//            mensaje = "Se elimino " + row +" registro, satisfactoriamente.";
-//        }catch(SQLException e){
-//            mensaje = "Error: " + e.getMessage();
-//        }finally{
-//            Conexion.closed(conn);
-//            Conexion.closed(stm);
-//        }
-//        return mensaje;
-//    }
-//    
+
 //    private final String SQL_SELECT="SELECT id,nombre,descripcion FROM producto ORDER BY id";
 //    public String listarUsuario(){
 //        Connection conn=null;
