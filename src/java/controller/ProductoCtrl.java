@@ -34,6 +34,12 @@ public class ProductoCtrl extends HttpServlet {
                 request.setAttribute("productos", productos);
                 request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaIndex.jsp").forward(request, response);
             }
+            if (request.getParameter("accion").equals("Editar")) {
+                editarProducto(request, response);
+            }
+            if (request.getParameter("accion").equals("Eliminar")) {
+                eliminarProducto(request, response);
+            }
         } else {
             productos = ProductoJDBC.instancia().listarProductos();
             request.setAttribute("productos", productos);
@@ -44,6 +50,9 @@ public class ProductoCtrl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if(request.getParameter("accion").equals("Editar")) {
+            cambiarProducto(request, response);
+        }
 
     }
 
@@ -63,6 +72,30 @@ public class ProductoCtrl extends HttpServlet {
 //           request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaCompra.jsp").forward(request, response); 
 //        }
 //        request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaLogin.jsp").forward(request, response);
+    }
+
+    private void editarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Producto producto = null;
+        producto = ProductoJDBC.instancia().consultarProducto(id);
+        request.setAttribute("producto", producto);
+        request.getRequestDispatcher("WEB-INF/serviciosadministrador/tiendaEditarProducto.jsp").forward(request, response);
+    }
+
+    private void cambiarProducto(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Producto producto = new Producto();
+        producto.setId(Integer.parseInt(request.getParameter("id")));
+        producto.setNombre(request.getParameter("nombre"));
+        producto.setDescripcion(request.getParameter("descripcion"));
+        producto.setPrecio(Double.parseDouble(request.getParameter("precio")));
+        String mensaje = ProductoJDBC.instancia().modificarProducto(producto);
+        response.sendRedirect("ProductoCtrl");
+    }
+
+    private void eliminarProducto(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String mensaje = ProductoJDBC.instancia().borrarProducto(id);
+        response.sendRedirect("ProductoCtrl");
     }
     
 
