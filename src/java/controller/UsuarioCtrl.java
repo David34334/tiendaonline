@@ -63,6 +63,7 @@ public class UsuarioCtrl extends HttpServlet {
         user.setIdentificacion(request.getParameter("cedula"));
         user.setDireccion(request.getParameter("direccion"));
         user.setId_rol(1);
+        user.setId_carrito(1);
         String mensaje = UsuarioJDBC.instancia().insertarUsuario(user);
         response.sendRedirect("ProductoCtrl");
     }

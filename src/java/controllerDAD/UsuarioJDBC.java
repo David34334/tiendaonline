@@ -21,7 +21,7 @@ public class UsuarioJDBC {
         return usuarioJDBC;
     }
     
-    private final String SQL_INSERT ="INSERT INTO usuario(nombre,apellido,correo,clave,direccion,identificacion,id_rol) values(?,?,?,?,?,?,?)";
+    private final String SQL_INSERT ="INSERT INTO usuario(nombre,apellido,correo,clave,direccion,identificacion,id_rol,id_carrito) values(?,?,?,?,?,?,?,?)";
     public String insertarUsuario(Usuario usuario){
         Connection conn=null;
         PreparedStatement stm=null;
@@ -31,14 +31,14 @@ public class UsuarioJDBC {
             
             conn = Conexion.getConnection() ;
             stm = conn.prepareStatement(SQL_INSERT);
-            int index =1;
-            stm.setString(index++, usuario.getNombre());
-            stm.setString(index++, usuario.getApellido());
-            stm.setString(index++, usuario.getCorreo());
-            stm.setString(index++, usuario.getClave());
-            stm.setString(index++, usuario.getDireccion());
-            stm.setString(index++, usuario.getIdentificacion());
-            stm.setInt(index++,usuario.getId_rol());
+            stm.setString(1, usuario.getNombre());
+            stm.setString(2, usuario.getApellido());
+            stm.setString(3, usuario.getCorreo());
+            stm.setString(4, usuario.getClave());
+            stm.setString(5, usuario.getDireccion());
+            stm.setString(6, usuario.getIdentificacion());
+            stm.setInt(7,usuario.getId_rol());
+            stm.setInt(8,usuario.getId_carrito());
             row = stm.executeUpdate();
             mensaje = "Se inserto " + row +" registro, satisfactoriamente.";
         }catch(SQLException e){
