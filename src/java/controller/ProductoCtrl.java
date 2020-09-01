@@ -27,7 +27,8 @@ public class ProductoCtrl extends HttpServlet {
             throws ServletException, IOException {
         if (request.getParameter("accion") != null) {
             if (request.getParameter("accion").equals("Comprar")) {
-                agregarCarro(request, response);
+                response.sendRedirect("/CarroCtrl");
+//                agregarCarro(request, response);
             }
             if (request.getParameter("accion").equals("VerCatalogo")) {
                 productos = ProductoJDBC.instancia().listarProductos();
