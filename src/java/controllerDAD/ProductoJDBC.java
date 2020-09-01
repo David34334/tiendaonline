@@ -53,6 +53,7 @@ public class ProductoJDBC {
     }
     
     
+
     private final String SQL_SELECT_CAT="SELECT * FROM producto WHERE id=?";
     public Producto consultarProducto( int id){
         Connection conn=null;
@@ -68,10 +69,13 @@ public class ProductoJDBC {
                 producto = new Producto();
                 producto.setId(rs.getInt(1));
                 producto.setNombre(rs.getString(2));
-                producto.setPrecio(rs.getDouble(3));
                 producto.setImagen(rs.getString(4));
                 producto.setDescripcion(rs.getString(5));
                 producto.setId_categoria(rs.getInt(6));
+
+                producto.setPrecio(Double.parseDouble(rs.getString(3)));
+                producto.setDescripcion(rs.getString(4));
+
             }
         }catch(SQLException e){
             
@@ -83,7 +87,7 @@ public class ProductoJDBC {
         return producto;
     }
     
-    private final String SQL_UPDATE ="UPDATE producto SET nombre=?, descripcion=? WHERE id=?";
+    private final String SQL_UPDATE ="UPDATE producto SET nombre=?, precio=?, descripcion=? WHERE id=?";
     public String modificarProducto(Producto producto){
         Connection conn=null;
         PreparedStatement stm=null;
@@ -95,8 +99,9 @@ public class ProductoJDBC {
             stm = conn.prepareStatement(SQL_UPDATE);
             int index =1; 
             stm.setString(index++, producto.getNombre());
+            stm.setDouble(index++,producto.getPrecio());
             stm.setString(index++, producto.getDescripcion());
-            //stm.setInt(index++,producto.getId());
+            stm.setInt(index++, producto.getId());
             row = stm.executeUpdate();
             mensaje = "Se actualizó " + row +" registro, satisfactoriamente.";
         }catch(SQLException e){
