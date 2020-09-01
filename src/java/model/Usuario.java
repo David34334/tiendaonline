@@ -19,6 +19,7 @@ public class Usuario {
     private String direccion;
     private String identificacion;
     private int id_rol;
+    private int id_carrito;
 
     public Usuario() {
     }
@@ -96,6 +97,14 @@ public class Usuario {
 
     public void setIdentificacion(String identificacion) {
         this.identificacion = identificacion;
+    }
+
+    public int getId_carrito() {
+        return id_carrito;
+    }
+
+    public void setId_carrito(int id_carrito) {
+        this.id_carrito = id_carrito;
     }
     
 }

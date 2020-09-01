@@ -27,7 +27,7 @@ public class ProductoCtrl extends HttpServlet {
             throws ServletException, IOException {
         if (request.getParameter("accion") != null) {
             if (request.getParameter("accion").equals("Comprar")) {
-                autorizarCompra(request, response);
+                agregarCarro(request, response);
             }
             if (request.getParameter("accion").equals("VerCatalogo")) {
                 productos = ProductoJDBC.instancia().listarProductos();
@@ -52,13 +52,18 @@ public class ProductoCtrl extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void autorizarCompra(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession objsesion = request.getSession(false);
-        String usuario = (String) objsesion.getAttribute("usuario");
-        if(usuario != null) {
-           request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaCompra.jsp").forward(request, response); 
-        }
-        request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaLogin.jsp").forward(request, response);
+    private void agregarCarro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id_producto = Integer.parseInt(request.getParameter("id"));
+        System.out.println(""+id_producto);
+//        Producto producto = new Producto();
+        
+//        HttpSession objsesion = request.getSession(false);
+//        String usuario = (String) objsesion.getAttribute("usuario");
+//        if(usuario != null) {
+//           request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaCompra.jsp").forward(request, response); 
+//        }
+//        request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaLogin.jsp").forward(request, response);
     }
+    
 
 }

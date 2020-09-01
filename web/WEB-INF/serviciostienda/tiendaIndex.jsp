@@ -20,10 +20,12 @@
             <h4>Bienvenido <c:out value="${usuario}"></c:out> !</h4>
             <%}%>
             <h2 class="text-center text-dark">Nuestros Productos!</h2>
-            <form action="ProductoCtrl" method="GET">
-                <div class="container">
+            <div class="container">
                     <div class="row">
-                    <c:forEach items="${productos}" var="producto">
+            <c:forEach items="${productos}" var="producto">
+            <form action="ProductoCtrl" method="GET">
+                
+                    
                     <div class="card mx-2 mb-4" style="width: 13rem;">
                         <img class="card-img-top" alt="..." src="img/<c:out value="${producto.imagen}"></c:out>">
                         <hr/>
@@ -31,6 +33,7 @@
                             <h5 class="card-title"><c:out value="${producto.nombre}"></c:out></h5>
                             <p class="card-text"><c:out value="${producto.descripcion}"></c:out></p>
                             <p class="card-text"><c:out value="${producto.precio}"></c:out> COP</p>
+                            <input hidden name="id" value="<c:out value="${producto.id}"></c:out>">
                             <input type="submit" class="btn btn-dark btn-block" name="accion" value="Comprar" />
                             <c:if test="${rol == 0}">
                                 <input type="submit" class="btn btn-warning btn-block" name="accion" value="Editar"/>
@@ -38,10 +41,12 @@
                             </c:if>
                         </div>
                     </div>
-                    </c:forEach>        
-                </div>
-            </div>
+                         
+                
         </form>
+        </c:forEach>  
+                        </div>
+            </div>
         <jsp:include page="../includes/footer.jsp"></jsp:include>
     </body>
 </html>

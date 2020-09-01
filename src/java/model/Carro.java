@@ -12,6 +12,8 @@ package model;
 public class Carro {
     private double precio;
     private int id_usuario;
+    private int id;
+    private String estado;
 
     public Carro() {
     }
@@ -37,6 +39,22 @@ public class Carro {
 
     public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     
     
