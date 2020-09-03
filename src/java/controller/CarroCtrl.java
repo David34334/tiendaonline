@@ -52,4 +52,9 @@ public class CarroCtrl extends HttpServlet {
         String mensaje = OrdenJDBC.instancia().insertarOrden(orden);
         ordenes.add(orden);
     }
+    
+    private void mostrarCarro(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+    
+    
+    }
 }
