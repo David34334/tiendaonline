@@ -69,13 +69,10 @@ public class ProductoJDBC {
                 producto = new Producto();
                 producto.setId(rs.getInt(1));
                 producto.setNombre(rs.getString(2));
+                producto.setPrecio(Double.parseDouble(rs.getString(3)));
                 producto.setImagen(rs.getString(4));
                 producto.setDescripcion(rs.getString(5));
                 producto.setId_categoria(rs.getInt(6));
-
-                producto.setPrecio(Double.parseDouble(rs.getString(3)));
-                producto.setDescripcion(rs.getString(4));
-
             }
         }catch(SQLException e){
             

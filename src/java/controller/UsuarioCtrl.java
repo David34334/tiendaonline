@@ -88,7 +88,6 @@ public class UsuarioCtrl extends HttpServlet {
         } else {
             request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaLogin.jsp").forward(request, response);
         }
-
     }
 
     public void cerrarSesion(HttpServletRequest request, HttpServletResponse response) throws IOException {
