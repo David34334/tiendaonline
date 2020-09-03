@@ -63,6 +63,7 @@ public class UsuarioCtrl extends HttpServlet {
         user.setIdentificacion(request.getParameter("cedula"));
         user.setDireccion(request.getParameter("direccion"));
         user.setId_rol(1);
+        user.setId_carrito(1);
         String mensaje = UsuarioJDBC.instancia().insertarUsuario(user);
         response.sendRedirect("ProductoCtrl");
     }
@@ -87,7 +88,6 @@ public class UsuarioCtrl extends HttpServlet {
         } else {
             request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaLogin.jsp").forward(request, response);
         }
-
     }
 
     public void cerrarSesion(HttpServletRequest request, HttpServletResponse response) throws IOException {

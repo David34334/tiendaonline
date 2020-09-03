@@ -13,6 +13,7 @@ public class Orden {
      private int id_carro;
     private int id_producto;
     private int cantidad;
+    private double precio;
 
     public Orden() {
     }
@@ -46,6 +47,14 @@ public class Orden {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
 

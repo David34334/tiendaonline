@@ -6,6 +6,7 @@
 package controller;
 
 import controllerDAD.ProductoJDBC;
+import controllerDAD.UsuarioJDBC;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,19 +17,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Producto;
+import model.Usuario;
 
 @WebServlet(name = "ProductoCtrl", urlPatterns = {"/ProductoCtrl"})
 public class ProductoCtrl extends HttpServlet {
 
     List<Producto> productos = new ArrayList();
 
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {    
         if (request.getParameter("accion") != null) {
             if (request.getParameter("accion").equals("Comprar")) {
-                response.sendRedirect("/CarroCtrl");
-//                agregarCarro(request, response);
+                HttpSession objsesion = request.getSession(false);  
+                int idUsuario = (int) objsesion.getAttribute("id");
+                Usuario user = null;
+                user = UsuarioJDBC.instancia().consultarUsuario(idUsuario);
+                request.setAttribute("user", user);
+                comprarArticulo(request, response);
             }
             if (request.getParameter("accion").equals("VerCatalogo")) {
                 productos = ProductoJDBC.instancia().listarProductos();
@@ -51,7 +58,7 @@ public class ProductoCtrl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameter("accion").equals("Editar")) {
+        if (request.getParameter("accion").equals("Editar")) {
             cambiarProducto(request, response);
         }
 
@@ -64,9 +71,9 @@ public class ProductoCtrl extends HttpServlet {
 
     private void agregarCarro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id_producto = Integer.parseInt(request.getParameter("id"));
-        System.out.println(""+id_producto);
+        System.out.println("" + id_producto);
 //        Producto producto = new Producto();
-        
+
 //        HttpSession objsesion = request.getSession(false);
 //        String usuario = (String) objsesion.getAttribute("usuario");
 //        if(usuario != null) {
@@ -98,6 +105,15 @@ public class ProductoCtrl extends HttpServlet {
         String mensaje = ProductoJDBC.instancia().borrarProducto(id);
         response.sendRedirect("ProductoCtrl");
     }
-    
+
+    private void comprarArticulo(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        int idProducto = Integer.parseInt(request.getParameter("id"));
+        Usuario user = (Usuario) request.getAttribute("user");
+        Producto product = ProductoJDBC.instancia().consultarProducto(idProducto);
+        request.setAttribute("producto", product);
+        request.setAttribute("user", user);
+        request.getRequestDispatcher("WEB-INF/carro/carroIndex.jsp").forward(request, response);
+//                agregarCarro(request, response);
+    }
 
 }

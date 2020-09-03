@@ -30,7 +30,7 @@ public class OrdenJDBC {
         return ordenJDBC;
     }
     
-    private final String SQL_INSERT ="INSERT INTO orden(id_carro,id_producto,cantidad) values(?,?,?)";
+    private final String SQL_INSERT ="INSERT INTO orden(id_carro,id_producto,cantidad,precio) values(?,?,?,?)";
     public String insertarOrden(Orden orden){
         Connection conn=null;
         PreparedStatement stm=null;
@@ -41,9 +41,10 @@ public class OrdenJDBC {
             conn = Conexion.getConnection() ;
             stm = conn.prepareStatement(SQL_INSERT);
             int index =1;
-            stm.setInt(index++, orden.getId_carro());
+            stm.setInt(index++, CarroJDBC.instancia().cantidadRegistros());
             stm.setInt(index++, orden.getId_producto());
             stm.setInt(index++, orden.getCantidad());
+            stm.setDouble(index++, orden.getPrecio());
             row = stm.executeUpdate();
             mensaje = "Se inserto " + row +" registro, satisfactoriamente.";
         }catch(SQLException e){

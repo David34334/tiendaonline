@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import controllerDAD.OrdenJDBC;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -17,10 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Orden;
 
-/**
- *
- * @author Hardwell
- */
+
 @WebServlet(name = "CarroCtrl", urlPatterns = {"/CarroCtrl"})
 public class CarroCtrl extends HttpServlet {
     List<Orden> ordenes = new ArrayList();
@@ -29,7 +20,13 @@ public class CarroCtrl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        if(request.getParameter("accion") != null) {
+            if(request.getParameter("accion").equals("Confirmar")) {
+                agregarCarro(request, response);
+            }
+        } else {
+            int id = (int) Integer.parseInt((String) request.getAttribute("id"));
+        }
     }
 
     @Override

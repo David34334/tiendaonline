@@ -87,4 +87,25 @@ public class CarroJDBC {
         return carro;
     }
     
+    private final String SQL_COUNT_CAT="SELECT COUNT(*) FROM carrito";
+    public int cantidadRegistros(){
+        Connection conn=null;
+        PreparedStatement stm=null;
+        ResultSet rs=null;
+        int total=0;
+        try{
+            conn = Conexion.getConnection() ;
+            stm = conn.prepareStatement(SQL_COUNT_CAT);
+            rs = stm.executeQuery();
+            total = rs.getInt(1);
+        }catch(SQLException e){
+            
+        }finally{
+            Conexion.closed(conn);
+            Conexion.closed(stm);
+            Conexion.closed(rs);
+        }
+        return total;
+    }
+    
 }
