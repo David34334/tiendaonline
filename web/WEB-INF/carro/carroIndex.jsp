@@ -23,6 +23,7 @@
                     </div>
                     <div class="card-body">
                         <form action="CarroCtrl" method="GET">
+                        <input hidden type="text"disabled="" class="form-control" name="id "value="<c:out value="${producto.nombre}"></c:out>"/>
                         <input type="text"disabled="" class="form-control" name="nombreproducto "value="<c:out value="${producto.nombre}"></c:out>"/>
                         <img style="width:350px; height:250px;" class="card-img-top" alt="..." src="img/<c:out value="${producto.imagen}"></c:out>">
                         <input type="text" disabled="" class="form-control" name="descripproducto "value="<c:out value="${producto.descripcion}"></c:out>"/>
