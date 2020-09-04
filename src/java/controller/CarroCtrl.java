@@ -22,6 +22,7 @@ public class CarroCtrl extends HttpServlet {
             throws ServletException, IOException {
         if(request.getParameter("accion") != null) {
             if(request.getParameter("accion").equals("Confirmar")) {
+                int idProducto = Integer.parseInt(request.getParameter("id"));
                 agregarCarro(request, response);
             }
         } else {

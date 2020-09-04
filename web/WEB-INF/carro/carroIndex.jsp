@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <title>Confirmar Compra!</title>
     </head>
     <body>
@@ -23,16 +23,16 @@
                     </div>
                     <div class="card-body">
                         <form action="CarroCtrl" method="GET">
-                        <input hidden type="text"disabled="" class="form-control" name="id "value="<c:out value="${producto.nombre}"></c:out>"/>
-                        <input type="text"disabled="" class="form-control" name="nombreproducto "value="<c:out value="${producto.nombre}"></c:out>"/>
+                        <input type="hidden" readonly="" class="form-control" name="id" value="<c:out value="${producto.id}"></c:out>"/>
+                        <input type="text" readonly="" class="form-control" name="nombreproducto" value="<c:out value="${producto.nombre}"></c:out>"/>
                         <img style="width:350px; height:250px;" class="card-img-top" alt="..." src="img/<c:out value="${producto.imagen}"></c:out>">
-                        <input type="text" disabled="" class="form-control" name="descripproducto "value="<c:out value="${producto.descripcion}"></c:out>"/>
-                        <input type="text" disabled="" class="form-control" name="precioproducto "value="<c:out value="${producto.precio}"></c:out>"/>
-                            <h2>Datos del Destinatario:</h2>
-                            <input type="text" disabled="" class="form-control" name="nombre"value="<c:out value="${user.nombre}"></c:out>"/>
-                        <input type="text" disabled="" class="form-control" name="correo"value="<c:out value="${user.correo}"></c:out>"/>
-                        <input type="text" disabled="" class="form-control" name="direccion"value="<c:out value="${user.direccion}"></c:out>"/>
-                            <input type="submit" class="btn btn-dark btn-block" name="accion" value="Confirmar"/>
+                        <input type="text" readonly="" class="form-control" name="descripproducto" value="<c:out value="${producto.descripcion}"></c:out>"/>
+                        <input type="text" readonly="" class="form-control" name="precioproducto" value="<c:out value="${producto.precio}"></c:out>"/>
+                        <h2>Datos del Destinatario:</h2>
+                        <input type="text" readonly="" class="form-control" name="nombre"value="<c:out value="${user.nombre}"></c:out>"/>
+                        <input type="text" readonly="" class="form-control" name="correo"value="<c:out value="${user.correo}"></c:out>"/>
+                        <input type="text" readonly="" class="form-control" name="direccion"value="<c:out value="${user.direccion}"></c:out>"/>
+                        <input type="submit" class="btn btn-dark btn-block" name="accion" value="Confirmar"/>
                         </form>
                     </div>
                     <div class="card-footer text-muted">
