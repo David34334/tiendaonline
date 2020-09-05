@@ -105,6 +105,6 @@ public class CarroCtrl extends HttpServlet {
         carro.setId_usuario(Integer.parseInt(request.getParameter("idUsuario")));
         carro.setPrecio(Double.parseDouble(request.getParameter("total")));
         String msg = CarroJDBC.instancia().insertarCarro(carro);
-
+        response.sendRedirect("ProductoCtrl");
     }
 }
