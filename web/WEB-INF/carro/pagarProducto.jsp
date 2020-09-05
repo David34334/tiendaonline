@@ -38,7 +38,7 @@
                 <input type="text" readonly="" class="form-control" name="nombre" value="<c:out value="${user.nombre}"></c:out>"/>
                 <input type="text" readonly="" class="form-control" name="correo" value="<c:out value="${user.correo}"></c:out>"/>
                 <input type="text" readonly="" class="form-control" name="direccion" value="<c:out value="${user.direccion}"></c:out>"/>
-                <input type="text" readonly="" class="form-control" name="total" value="<c:out value="${total}"></c:out>"/>
+                <input type="number" readonly="" class="form-control" name="total" value="<c:out value="${total}"></c:out>"/>
                     <input type="submit" class="btn btn-dark btn-block" name="accion" value="Pagar" />
                     <input type="submit" class="btn btn-dark btn-block" name="accion" value="Volver" />
                 </form>

@@ -33,7 +33,7 @@ public class CarroJDBC {
         return carroJDBC;
     }
     
-    private final String SQL_INSERT ="INSERT INTO carrito(precio,id_usuario,estado) values(?,?,?)";
+    private final String SQL_INSERT ="INSERT INTO carrito(precio,id_usuario,estado,referencia) values(?,?,?,?)";
     public String insertarCarro(Carro carro){
         Connection conn=null;
         PreparedStatement stm=null;
@@ -47,7 +47,7 @@ public class CarroJDBC {
             stm.setDouble(index++, carro.getPrecio());
             stm.setInt(index++, carro.getId_usuario());
             stm.setString(index++, carro.getEstado());
-//            stm.setInt(index++, carro.getReferencia());
+            stm.setInt(index++, carro.getId_usuario());
             row = stm.executeUpdate();
             mensaje = "Se inserto " + row +" registro, satisfactoriamente.";
         }catch(SQLException e){
@@ -90,7 +90,7 @@ public class CarroJDBC {
         return carro;
     }
     
-    private final String SQL_COUNT_CAT="SELECT COUNT(*) FROM carrito";
+    private final String SQL_COUNT_CAT="SELECT COUNT(*) AS total FROM carrito";
     public int cantidadRegistros(){
         Connection conn=null;
         PreparedStatement stm=null;

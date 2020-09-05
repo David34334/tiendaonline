@@ -28,7 +28,8 @@
                         <img style="width:350px; height:250px;" class="card-img-top" alt="..." src="img/<c:out value="${producto.imagen}"></c:out>">
                         <input type="text" readonly="" class="form-control" name="descripproducto" value="<c:out value="${producto.descripcion}"></c:out>"/>
                         <input type="text" readonly="" class="form-control" name="precioproducto" value="<c:out value="${producto.precio}"></c:out>"/>
-                        <input type="text" class="form-control" name="cantidad" />
+                        <label>Cantidad</label>
+                        <input type="text" class="form-control" name="cantidad" value="1" />
                         <input type="hidden" readonly="" class="form-control" name="idUsuario" value="<c:out value="${user.id}"></c:out>"/>
                         <input type="submit" class="btn btn-dark btn-block" name="accion" value="Anadir"/>
                         </form>
