@@ -5,6 +5,7 @@
  */
 package controller;
 
+import controllerDAD.OrdenJDBC;
 import controllerDAD.ProductoJDBC;
 import controllerDAD.UsuarioJDBC;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Orden;
 import model.Producto;
 import model.Usuario;
 
@@ -48,6 +50,7 @@ public class ProductoCtrl extends HttpServlet {
             if (request.getParameter("accion").equals("Eliminar")) {
                 eliminarProducto(request, response);
             }
+            
         } else {
             productos = ProductoJDBC.instancia().listarProductos();
             request.setAttribute("productos", productos);
@@ -69,18 +72,7 @@ public class ProductoCtrl extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void agregarCarro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id_producto = Integer.parseInt(request.getParameter("id"));
-        System.out.println("" + id_producto);
-//        Producto producto = new Producto();
-
-//        HttpSession objsesion = request.getSession(false);
-//        String usuario = (String) objsesion.getAttribute("usuario");
-//        if(usuario != null) {
-//           request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaCompra.jsp").forward(request, response); 
-//        }
-//        request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaLogin.jsp").forward(request, response);
-    }
+ 
 
     private void editarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -110,9 +102,10 @@ public class ProductoCtrl extends HttpServlet {
         int idProducto = Integer.parseInt(request.getParameter("id"));
         Usuario user = (Usuario) request.getAttribute("user");
         Producto product = ProductoJDBC.instancia().consultarProducto(idProducto);
+        request.setAttribute("id_producto", idProducto);
         request.setAttribute("producto", product);
         request.setAttribute("user", user);
-        request.getRequestDispatcher("WEB-INF/carro/carroIndex.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/serviciostienda/infoProducto.jsp").forward(request, response);
 //                agregarCarro(request, response);
     }
 

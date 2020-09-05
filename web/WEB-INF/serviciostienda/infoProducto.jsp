@@ -22,17 +22,19 @@
                         <h4>Resumen del Pedido!</h4>
                     </div>
                     <div class="card-body">
-                            <form action="CarroCtrl" method="GET">
-                        <input hidden type="text"disabled="" class="form-control" name="id "value="<c:out value="${producto.nombre}"></c:out>"/>
-                        <input type="text"disabled="" class="form-control" name="nombreproducto "value="<c:out value="${producto.nombre}"></c:out>"/>
+                        <form action="CarroCtrl" method="GET">
+                        <input hidden type="text"disabled="" class="form-control" name="id" value="<c:out value="${producto.id}"></c:out>"/>
+                        <input type="text"disabled="" class="form-control" name="nombreproducto" value="<c:out value="${producto.nombre}"></c:out>"/>
                         <img style="width:350px; height:250px;" class="card-img-top" alt="..." src="img/<c:out value="${producto.imagen}"></c:out>">
                         <input type="text" disabled="" class="form-control" name="descripproducto "value="<c:out value="${producto.descripcion}"></c:out>"/>
                         <input type="text" disabled="" class="form-control" name="precioproducto "value="<c:out value="${producto.precio}"></c:out>"/>
+                        <input type="text" class="form-control" name="cantidad"/>
                             <h2>Datos del Destinatario:</h2>
                             <input type="text" disabled="" class="form-control" name="nombre"value="<c:out value="${user.nombre}"></c:out>"/>
                         <input type="text" disabled="" class="form-control" name="correo"value="<c:out value="${user.correo}"></c:out>"/>
                         <input type="text" disabled="" class="form-control" name="direccion"value="<c:out value="${user.direccion}"></c:out>"/>
                             <input type="submit" class="btn btn-dark btn-block" name="accion" value="Confirmar"/>
+                            <input type="submit" class="btn btn-dark btn-block" name="accion" value="Anadir"/>
                         </form>
                     </div>
                     <div class="card-footer text-muted">
