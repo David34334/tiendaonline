@@ -1,13 +1,18 @@
 package controller;
 
+import controllerDAD.CarroJDBC;
 import controllerDAD.UsuarioJDBC;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Carro;
+import model.Orden;
 import model.Usuario;
 
 @WebServlet(name = "UsuarioCtrl", urlPatterns = {"/UsuarioCtrl"})
@@ -28,6 +33,9 @@ public class UsuarioCtrl extends HttpServlet {
             }
             if (request.getParameter("accion").equals("Editar Datos")) {
                 actualizarDatos(request, response);
+            }
+            if (request.getParameter("accion").equals("Mis Compras")) {
+                compras(request, response);
             }
         } else {
             //Inicializar todos los usuarios y productos
@@ -104,6 +112,20 @@ public class UsuarioCtrl extends HttpServlet {
         request.setAttribute("usuario", user);
         request.setAttribute("id", id);
         request.getRequestDispatcher("WEB-INF/usuarios/editarDatos.jsp").forward(request, response);
+    }
+    
+    public void compras(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession objsesion = request.getSession(false);
+        String usuario = (String) objsesion.getAttribute("usuario");
+        int id = (int) objsesion.getAttribute("id");
+        Usuario user = new Usuario();
+        user = UsuarioJDBC.instancia().consultarUsuario(id);
+        request.setAttribute("usuario", user);
+        request.setAttribute("id", id);
+        List<Carro> carros = new ArrayList();
+        carros = CarroJDBC.instancia().listarCarros(id);
+        request.setAttribute("carros", carros);
+        request.getRequestDispatcher("WEB-INF/usuarios/compras.jsp").forward(request, response);
     }
 
     private void editarUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
