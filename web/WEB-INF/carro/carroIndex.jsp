@@ -22,20 +22,15 @@
                         <h4>Resumen del Pedido!</h4>
                     </div>
                     <div class="card-body">
-
                         <form action="CarroCtrl" method="POST">
                         <input type="hidden" readonly="" class="form-control" name="idProducto" value="<c:out value="${producto.id}"></c:out>"/>
                         <input type="text" readonly="" class="form-control" name="nombreproducto" value="<c:out value="${producto.nombre}"></c:out>"/>
-
                         <img style="width:350px; height:250px;" class="card-img-top" alt="..." src="img/<c:out value="${producto.imagen}"></c:out>">
                         <input type="text" readonly="" class="form-control" name="descripproducto" value="<c:out value="${producto.descripcion}"></c:out>"/>
                         <input type="text" readonly="" class="form-control" name="precioproducto" value="<c:out value="${producto.precio}"></c:out>"/>
-                        <h2>Datos del Destinatario:</h2>
-                        <input type="hidden" readonly="" class="form-control" name="idUsuario" value="<c:out value="${user.id}"></c:out>"/>
-                        <input type="text" readonly="" class="form-control" name="nombre"value="<c:out value="${user.nombre}"></c:out>"/>
-                        <input type="text" readonly="" class="form-control" name="correo"value="<c:out value="${user.correo}"></c:out>"/>
-                        <input type="text" readonly="" class="form-control" name="direccion"value="<c:out value="${user.direccion}"></c:out>"/>
-                        <input type="submit" class="btn btn-dark btn-block" name="accion" value="Confirmar"/>
+                        <input type="text" class="form-control" name="cantidad" />
+                      
+                        <input type="submit" class="btn btn-dark btn-block" name="accion" value="Anadir"/>
                         </form>
                     </div>
                     <div class="card-footer text-muted">

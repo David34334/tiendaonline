@@ -9,7 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import model.Orden;
+import model.Producto;
 import services.Conexion;
 
 /**
@@ -31,7 +34,7 @@ public class OrdenJDBC {
     }
     
     private final String SQL_INSERT ="INSERT INTO orden(id_carro,id_producto,cantidad,precio) values(?,?,?,?)";
-    public String insertarOrden(Orden orden){
+    public int insertarOrden(Orden orden){
         Connection conn=null;
         PreparedStatement stm=null;
         String mensaje="";
@@ -53,7 +56,7 @@ public class OrdenJDBC {
             Conexion.closed(conn);
             Conexion.closed(stm);
         }
-        return mensaje;
+        return CarroJDBC.instancia().cantidadRegistros();
     }
     
     
@@ -85,7 +88,37 @@ public class OrdenJDBC {
     }
     
 
-
+ private final String SQL_SELECT="SELECT id_carro,id_producto,cantidad,precio FROM orden WHERE id_carro=?";
+    public List<Orden> listarOrdenes(int id){
+        Connection conn=null;
+        PreparedStatement stm=null;
+        ResultSet rs=null;
+        List<Orden> lista = new ArrayList();
+        Orden orden=null;
+        try{
+            
+            conn = Conexion.getConnection() ;
+            stm = conn.prepareStatement(SQL_SELECT);
+            stm.setInt(1, id);
+            rs = stm.executeQuery();
+            while(rs.next()){
+                orden = new Orden();
+                orden.setId_carro(rs.getInt(1));
+                orden.setId_producto(rs.getInt(2));
+                orden.setCantidad(rs.getInt(3));
+                orden.setPrecio(Double.parseDouble(rs.getString(4)));
+             
+                lista.add(orden);
+            }
+        }catch(SQLException e){
+            
+        }finally{
+            Conexion.closed(conn);
+            Conexion.closed(stm);
+            Conexion.closed(rs);
+        }
+        return lista;
+    }
     
     
     

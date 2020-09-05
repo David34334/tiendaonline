@@ -98,14 +98,13 @@ public class ProductoCtrl extends HttpServlet {
         response.sendRedirect("ProductoCtrl");
     }
 
-    private void comprarArticulo(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+   private void comprarArticulo(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int idProducto = Integer.parseInt(request.getParameter("id"));
         Usuario user = (Usuario) request.getAttribute("user");
         Producto product = ProductoJDBC.instancia().consultarProducto(idProducto);
-        request.setAttribute("id_producto", idProducto);
         request.setAttribute("producto", product);
         request.setAttribute("user", user);
-        request.getRequestDispatcher("WEB-INF/serviciostienda/infoProducto.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/carro/carroIndex.jsp").forward(request, response);
 //                agregarCarro(request, response);
     }
 

@@ -34,9 +34,12 @@
   <tbody>
       <c:forEach items="${carros}" var="carro">
     <tr>
-      <th scope="row">carro.id</th>
-      <td>carro.precio</td>
-      <td>carro.estado</td>
+      <th scope="row"><c:out value="${carro.id}"></c:out></th>
+   
+      <td><c:out value="${carro.precio}"></c:out></td>
+      
+      <td><c:out value="${carro.estado}"></c:out></td>
+      
     </tr>
     </c:forEach>  
 
