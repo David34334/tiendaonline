@@ -9,40 +9,40 @@
     </head>
     <body>
         <jsp:include page="../includes/header.jsp"></jsp:include>
-        <h1 class="text-center">Paga tu(s) Productos!</h1>
-        <div class="container">
-            <form action="CarroCtrl" method="POST">
-                       <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Nombre</th>
-      <th scope="col">Precio</th>
-      <th scope="col">Cantidad</th>
-      <th scope="col">Total</th>
-    </tr>
-  </thead>
-  <tbody>
-      <c:forEach items="${productos}" var="producto">
-    <tr>
-      <th scope="row"><c:out value="${producto.nombre}"></c:out></th>
-      <td><c:out value="${producto.precio}"></c:out></td>
-      <td><c:out value="${producto.cantidad}"></c:out></td>
-       <td><c:out value="${(producto.precio) * producto.cantidad}"></c:out></td>
-    </tr>
-    </c:forEach>  
+            <h1 class="text-center">Paga tu(s) Productos!</h1>
+            <div class="container">
+                <form action="CarroCtrl" method="POST">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${productos}" var="producto">
+                            <tr>
+                                <th scope="row"><c:out value="${producto.nombre}"></c:out></th>
+                                <td><c:out value="${producto.precio}"></c:out></td>
+                                <td><c:out value="${producto.cantidad}"></c:out></td>
+                                <td><c:out value="${(producto.precio) * producto.cantidad}"></c:out></td>
+                                </tr>
+                        </c:forEach>  
 
-  </tbody>
-</table>
+                    </tbody>
+                </table>
                 <h2>Datos del Destinatario:</h2>
-                        <input type="hidden" readonly="" class="form-control" name="idUsuario" value="<c:out value="${user.id}"></c:out>"/>
-                        <input type="text" readonly="" class="form-control" name="nombre"value="<c:out value="${user.nombre}"></c:out>"/>
-                        <input type="text" readonly="" class="form-control" name="correo"value="<c:out value="${user.correo}"></c:out>"/>
-                        <input type="text" readonly="" class="form-control" name="direccion"value="<c:out value="${user.direccion}"></c:out>"/>
-                <input type="text" disabled="" class="form-control" name="total"value="<c:out value="${total}"></c:out>"/>
-                <input type="submit" class="btn btn-dark btn-block" name="accion" value="Pagar" />
-                <input type="submit" class="btn btn-dark btn-block" name="accion" value="Volver" />
-            </form>
-        </div>
+                <input type="hidden" readonly="" class="form-control" name="idUsuario" value="<c:out value="${user.id}"></c:out>"/>
+                <input type="text" readonly="" class="form-control" name="nombre" value="<c:out value="${user.nombre}"></c:out>"/>
+                <input type="text" readonly="" class="form-control" name="correo" value="<c:out value="${user.correo}"></c:out>"/>
+                <input type="text" readonly="" class="form-control" name="direccion" value="<c:out value="${user.direccion}"></c:out>"/>
+                <input type="text" readonly="" class="form-control" name="total" value="<c:out value="${total}"></c:out>"/>
+                    <input type="submit" class="btn btn-dark btn-block" name="accion" value="Pagar" />
+                    <input type="submit" class="btn btn-dark btn-block" name="accion" value="Volver" />
+                </form>
+            </div>
         <jsp:include page="../includes/footer.jsp"></jsp:include>
     </body>
 </html>

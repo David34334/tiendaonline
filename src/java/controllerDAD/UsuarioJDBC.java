@@ -51,7 +51,7 @@ public class UsuarioJDBC {
     }
     
     
-    private final String SQL_SELECT_CAT="SELECT nombre,apellido,correo,direccion,identificacion,id_rol FROM usuario WHERE id=?";
+    private final String SQL_SELECT_CAT="SELECT id,nombre,apellido,correo,direccion,identificacion,id_rol FROM usuario WHERE id=?";
     public Usuario consultarUsuario(int id){
         Connection conn=null;
         PreparedStatement stm=null;
@@ -64,13 +64,13 @@ public class UsuarioJDBC {
             rs = stm.executeQuery();
             while(rs.next()){
                 usuario = new Usuario();
-//                producto.setId(rs.getInt(1));
-                usuario.setNombre(rs.getString(1));
-                usuario.setApellido(rs.getString(2));
-                usuario.setCorreo(rs.getString(3));
-                usuario.setDireccion(rs.getString(4));
-                usuario.setIdentificacion(rs.getString(5));
-                usuario.setId_rol(Integer.parseInt(rs.getString(6)));
+                usuario.setId(rs.getInt(1));
+                usuario.setNombre(rs.getString(2));
+                usuario.setApellido(rs.getString(3));
+                usuario.setCorreo(rs.getString(4));
+                usuario.setDireccion(rs.getString(5));
+                usuario.setIdentificacion(rs.getString(6));
+                usuario.setId_rol(Integer.parseInt(rs.getString(7)));
             }
         }catch(SQLException e){
             

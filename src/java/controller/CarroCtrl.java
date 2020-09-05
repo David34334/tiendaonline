@@ -3,6 +3,7 @@ package controller;
 import controllerDAD.CarroJDBC;
 import controllerDAD.OrdenJDBC;
 import controllerDAD.ProductoJDBC;
+import controllerDAD.UsuarioJDBC;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +17,7 @@ import model.Orden;
 
 import model.Usuario;
 
-
 import model.Producto;
-
 
 @WebServlet(name = "CarroCtrl", urlPatterns = {"/CarroCtrl"})
 public class CarroCtrl extends HttpServlet {
@@ -29,18 +28,13 @@ public class CarroCtrl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if(request.getParameter("accion") != null) {
-            if(request.getParameter("accion").equals("Anadir")) {
+        if (request.getParameter("accion") != null) {
+            if (request.getParameter("accion").equals("Anadir")) {
                 agregarCarro(request, response);
+            } else {
+
             }
-            
-//            if(request.getParameter("accion").equals("Confirmar")) {
-//                agregarCarro(request, response);
-//            }
- else {
-            
         }
-    }
     }
 
     @Override
@@ -49,19 +43,18 @@ public class CarroCtrl extends HttpServlet {
         if (request.getParameter("accion").equals("Anadir")) {
             agregarCarro(request, response);
         }
-        if(request.getParameter("accion").equals("Pagar")) {
-                comprarCarro(request, response);
-            }
-         if(request.getParameter("accion").equals("Volver")) {
-                request.getRequestDispatcher("WEB-INF/serviciostienda/tiendaIndex.jsp").forward(request, response);
-            }
+        if (request.getParameter("accion").equals("Pagar")) {
+            comprarCarro(request, response);
+        }
+        if (request.getParameter("accion").equals("Volver")) {
+            response.sendRedirect("ProductoCtrl");
+        }
     }
 
     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 
     private void agregarCarro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id_producto = Integer.parseInt(request.getParameter("idProducto"));
@@ -87,23 +80,23 @@ public class CarroCtrl extends HttpServlet {
         request.setAttribute("productos", productos);
 //        request.setAttribute("idUsuario", request.getParameter("idUsuario"));
         request.setAttribute("total", calcularPrecio());
-        Usuario user = (Usuario) request.getAttribute("user");
+        int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+        Usuario user = UsuarioJDBC.instancia().consultarUsuario(idUsuario);
         request.setAttribute("user", user);
-        
+
 //        request.setAttribute("ordenes", ordenes);
         request.getRequestDispatcher("WEB-INF/carro/pagarProducto.jsp").forward(request, response);
-        
 
     }
-    
-    private double calcularPrecio(){
-        double total =0;
-        
+
+    private double calcularPrecio() {
+        double total = 0;
+
         for (Orden ordene : ordenes) {
-            total = total+ ordene.getCantidad()*ordene.getPrecio();
+            total = total + ordene.getCantidad() * ordene.getPrecio();
         }
         return total;
-    
+
     }
 
     private void comprarCarro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

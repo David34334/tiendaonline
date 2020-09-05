@@ -29,7 +29,7 @@
                         <input type="text" readonly="" class="form-control" name="descripproducto" value="<c:out value="${producto.descripcion}"></c:out>"/>
                         <input type="text" readonly="" class="form-control" name="precioproducto" value="<c:out value="${producto.precio}"></c:out>"/>
                         <input type="text" class="form-control" name="cantidad" />
-                      
+                        <input type="hidden" readonly="" class="form-control" name="idUsuario" value="<c:out value="${user.id}"></c:out>"/>
                         <input type="submit" class="btn btn-dark btn-block" name="accion" value="Anadir"/>
                         </form>
                     </div>
