@@ -29,6 +29,7 @@
       <th scope="col">id</th>
       <th scope="col">Precio</th>
       <th scope="col">Estado</th>
+      <th scope="col">Accion</th>
     </tr>
   </thead>
   <tbody>
@@ -39,6 +40,12 @@
       <td><c:out value="${carro.precio}"></c:out></td>
       
       <td><c:out value="${carro.estado}"></c:out></td>
+      <td>
+          <form action="UsuarioCtrl" method="POST">
+              <input hidden class="btn btn-dark btn-block"  name="id_carro" value="<c:out value="${carro.id}"></c:out>"/>
+              <input class="btn btn-dark btn-block" type="submit" name="accion" value="Ver"/>
+          </form>
+      </td>
       
     </tr>
     </c:forEach>  

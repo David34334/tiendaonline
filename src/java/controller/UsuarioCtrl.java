@@ -1,6 +1,8 @@
 package controller;
 
 import controllerDAD.CarroJDBC;
+import controllerDAD.OrdenJDBC;
+import controllerDAD.ProductoJDBC;
 import controllerDAD.UsuarioJDBC;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,7 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Carro;
+import model.Producto;
+
 import model.Orden;
+import model.Producto;
 import model.Usuario;
 
 @WebServlet(name = "UsuarioCtrl", urlPatterns = {"/UsuarioCtrl"})
@@ -59,6 +64,9 @@ public class UsuarioCtrl extends HttpServlet {
         }
         if (request.getParameter("accion").equals("Editar")) {
             editarUsuario(request, response);
+        }
+        if (request.getParameter("accion").equals("Ver")) {
+            verOrden(request, response);
         }
     }
 
@@ -126,6 +134,27 @@ public class UsuarioCtrl extends HttpServlet {
         carros = CarroJDBC.instancia().listarCarros(id);
         request.setAttribute("carros", carros);
         request.getRequestDispatcher("WEB-INF/usuarios/compras.jsp").forward(request, response);
+    }
+    
+     public void verOrden(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession objsesion = request.getSession(false);
+        String usuario = (String) objsesion.getAttribute("usuario");
+        
+        int id = (int) objsesion.getAttribute("id");
+        Usuario user = new Usuario();
+        user = UsuarioJDBC.instancia().consultarUsuario(id);
+        request.setAttribute("usuario", user);
+        request.setAttribute("id", id);
+        List<Orden> ordenes = OrdenJDBC.instancia().listarOrdenes(Integer.parseInt(request.getParameter("id_carro")));
+        List<Producto> productos = new ArrayList();
+        for (Orden ordene : ordenes) {
+            Producto product = ProductoJDBC.instancia().consultarProducto(ordene.getId_producto());
+            product.setCantidad(ordene.getCantidad());
+            productos.add(product);
+        }
+        request.setAttribute("productos", productos);
+//        request.setAttribute("carros", carros);
+        request.getRequestDispatcher("WEB-INF/carro/revisarProducto.jsp").forward(request, response);
     }
 
     private void editarUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {

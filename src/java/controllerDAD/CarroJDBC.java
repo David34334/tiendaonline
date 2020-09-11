@@ -100,6 +100,7 @@ public class CarroJDBC {
             conn = Conexion.getConnection() ;
             stm = conn.prepareStatement(SQL_COUNT_CAT);
             rs = stm.executeQuery();
+            rs.next();
             total = rs.getInt(1);
         }catch(SQLException e){
             
