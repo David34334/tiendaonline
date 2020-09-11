@@ -143,7 +143,7 @@ public class UsuarioCtrl extends HttpServlet {
         int id = (int) objsesion.getAttribute("id");
         Usuario user = new Usuario();
         user = UsuarioJDBC.instancia().consultarUsuario(id);
-        request.setAttribute("usuario", user);
+        request.setAttribute("user", user);
         request.setAttribute("id", id);
         List<Orden> ordenes = OrdenJDBC.instancia().listarOrdenes(Integer.parseInt(request.getParameter("id_carro")));
         List<Producto> productos = new ArrayList();
@@ -152,6 +152,7 @@ public class UsuarioCtrl extends HttpServlet {
             product.setCantidad(ordene.getCantidad());
             productos.add(product);
         }
+        
         request.setAttribute("productos", productos);
 //        request.setAttribute("carros", carros);
         request.getRequestDispatcher("WEB-INF/carro/revisarProducto.jsp").forward(request, response);

@@ -109,7 +109,7 @@ public class CarroJDBC {
             Conexion.closed(stm);
             Conexion.closed(rs);
         }
-        return total;
+        return total+1;
     }
      private final String SQL_SELECT="SELECT id,precio,estado FROM carrito WHERE id_usuario=?";
     public List<Carro> listarCarros(int id){
