@@ -58,17 +58,13 @@ public class CarroCtrl extends HttpServlet {
 
     private void agregarCarro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id_producto = Integer.parseInt(request.getParameter("idProducto"));
+        
         Orden orden = new Orden();
-//        orden.setId_carro(Integer.parseInt(request.getParameter("idUsuario")));
         orden.setCantidad(Integer.parseInt(request.getParameter("cantidad")));
         orden.setId_producto(id_producto);
         orden.setPrecio(Double.parseDouble(request.getParameter("precioproducto")));
+        
         int id_carro = OrdenJDBC.instancia().insertarOrden(orden);
-//        Carro carro = new Carro();
-//        carro.setId_usuario(Integer.parseInt(request.getParameter("idUsuario")));
-//        carro.setEstado("proceso");
-//        carro.setPrecio(0);
-//        int mensaje2 = CarroJDBC.instancia().insertarCarro(carro);
         //ENVIO DE DATOS NECESARIOS A PAGARPRODUCTO
         ordenes = OrdenJDBC.instancia().listarOrdenes(id_carro);
         List<Producto> productos = new ArrayList();
@@ -78,13 +74,11 @@ public class CarroCtrl extends HttpServlet {
             productos.add(product);
         }
         request.setAttribute("productos", productos);
-//        request.setAttribute("idUsuario", request.getParameter("idUsuario"));
         request.setAttribute("total", calcularPrecio());
         int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
         Usuario user = UsuarioJDBC.instancia().consultarUsuario(idUsuario);
         request.setAttribute("user", user);
 
-//        request.setAttribute("ordenes", ordenes);
         request.getRequestDispatcher("WEB-INF/carro/pagarProducto.jsp").forward(request, response);
 
     }

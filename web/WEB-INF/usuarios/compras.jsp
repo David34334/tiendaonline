@@ -17,43 +17,37 @@
         <jsp:include page="../includes/header.jsp"></jsp:include>
             <!--Productos-->
         <%if (usuario != null) {%>
-        <h4>Bienvenido <c:out value="${usuario}"></c:out> !</h4>
+        <h4>Historial de tus compras <c:out value="${usuario.nombre}"></c:out> !</h4>
         <%}%>
-        <h2 class="text-center text-dark">Nuestros Productos!</h2>
+        <h2 class="text-center text-dark">Artículos que Compraste!</h2>
         <div class="container">
             <div class="row">
-                
-                        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">Precio</th>
-      <th scope="col">Estado</th>
-      <th scope="col">Accion</th>
-    </tr>
-  </thead>
-  <tbody>
-      <c:forEach items="${carros}" var="carro">
-    <tr>
-      <th scope="row"><c:out value="${carro.id}"></c:out></th>
-   
-      <td><c:out value="${carro.precio}"></c:out></td>
-      
-      <td><c:out value="${carro.estado}"></c:out></td>
-      <td>
-          <form action="UsuarioCtrl" method="POST">
-              <input hidden class="btn btn-dark btn-block"  name="id_carro" value="<c:out value="${carro.id}"></c:out>"/>
-              <input class="btn btn-dark btn-block" type="submit" name="accion" value="Ver"/>
-          </form>
-      </td>
-      
-    </tr>
-    </c:forEach>  
 
-  </tbody>
-</table>
-                
-                
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${carros}" var="carro">
+                            <tr>
+                                <th scope="row"><c:out value="${carro.id}"></c:out></th>
+                                    <td><c:out value="${carro.precio}"></c:out></td>
+                                    <td><c:out value="${carro.estado}"></c:out></td>
+                                    <td>
+                                        <form action="UsuarioCtrl" method="POST">
+                                            <input hidden class="btn btn-dark btn-block"  name="id_carro" value="<c:out value="${carro.id}"></c:out>"/>
+                                            <input class="btn btn-dark btn-block" type="submit" name="accion" value="Ver"/>
+                                        </form>
+                                    </td>
+                                </tr>
+                        </c:forEach>  
+                    </tbody>
+                </table>
             </div>
         </div>
         <jsp:include page="../includes/footer.jsp"></jsp:include>
