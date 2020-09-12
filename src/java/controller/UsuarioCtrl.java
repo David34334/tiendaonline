@@ -147,13 +147,16 @@ public class UsuarioCtrl extends HttpServlet {
         request.setAttribute("id", id);
         List<Orden> ordenes = OrdenJDBC.instancia().listarOrdenes(Integer.parseInt(request.getParameter("id_carro")));
         List<Producto> productos = new ArrayList();
+        double total = 0;
         for (Orden ordene : ordenes) {
             Producto product = ProductoJDBC.instancia().consultarProducto(ordene.getId_producto());
             product.setCantidad(ordene.getCantidad());
+            total = total + product.getPrecio()*product.getCantidad();
             productos.add(product);
         }
         
         request.setAttribute("productos", productos);
+        request.setAttribute("total", total);
 //        request.setAttribute("carros", carros);
         request.getRequestDispatcher("WEB-INF/carro/revisarProducto.jsp").forward(request, response);
     }
